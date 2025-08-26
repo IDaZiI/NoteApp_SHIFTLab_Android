@@ -1,6 +1,5 @@
 package com.danilova.notesapp.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -12,21 +11,26 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    background = backgroundDark,
+    surface = surfaceDark
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = Brown100,
+    onPrimary = Brown20,
+    primaryContainer = Brown80,
+    onPrimaryContainer = Brown100,
+    background = Brown20,
+    surface = Brown40,
+    onSurface = Brown100,
+    surfaceVariant = Brown20,
+    onSurfaceVariant = Brown100,
+    surfaceContainerHighest = Brown20
 )
 
 @Composable
 fun NotesAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {

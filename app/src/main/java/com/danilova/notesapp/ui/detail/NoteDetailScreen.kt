@@ -45,9 +45,14 @@ fun NoteDetailScreen(
                 .padding(16.dp)
                 .padding(WindowInsets.ime.asPaddingValues())
         ) {
-            Text(text = note.title, style = MaterialTheme.typography.titleLarge)
+            Text(
+                text = note.title,
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onSurface)
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = note.content, style = MaterialTheme.typography.bodyLarge)
+            Text(text = note.content,
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface)
         }
     }
 }

@@ -14,6 +14,7 @@ import com.danilova.notesapp.ui.list.NotesViewModelFactory
 import com.danilova.notesapp.data.AppDatabase
 import com.danilova.notesapp.data.NotesRepository
 import com.danilova.notesapp.ui.detail.NoteDetailScreen
+import com.danilova.notesapp.ui.theme.NotesAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +22,9 @@ class MainActivity : ComponentActivity() {
         val dao = AppDatabase.getDatabase(applicationContext).noteDao()
         val repository = NotesRepository(dao)
         setContent {
-            NotesApp(repository = repository)
+            NotesAppTheme(dynamicColor = false){
+                NotesApp(repository = repository)
+            }
         }
     }
 }

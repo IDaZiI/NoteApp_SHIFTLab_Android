@@ -2,10 +2,10 @@ package com.danilova.notesapp.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val backgroundDark = Color(0xB5121212)
+val surfaceDark = Color(0x591E1E1E)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val Brown100 = Color(0xFF47280E)
+val Brown80 = Color(0xFFD5782A)
+val Brown40 = Color(0xFFE3A571)
+val Brown20 = Color(0xFFF9EDE3)

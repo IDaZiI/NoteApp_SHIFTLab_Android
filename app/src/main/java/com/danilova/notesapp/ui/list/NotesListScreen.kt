@@ -54,9 +54,7 @@ fun NotesListScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = onAddClick,
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.onPrimary
+                onClick = onAddClick
             ) {
                 Icon(Icons.Default.Add, contentDescription = "Добавить")
             }
@@ -75,9 +73,7 @@ fun NotesListScreen(
             ) {
                 Text(
                     text = if (searchQuery.isEmpty()) "Пока нет заметок"
-                    else "Заметки не найдены",
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+                    else "Заметки не найдены"
                 )
             }
         } else {
@@ -92,10 +88,8 @@ fun NotesListScreen(
                             .fillMaxWidth()
                             .padding(horizontal = 8.dp, vertical = 4.dp)
                             .clickable { onNoteClick(note) },
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.surfaceVariant
-                        ),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+                        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+                        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.surface)
                     ) {
                         Row(
                             modifier = Modifier
@@ -109,23 +103,20 @@ fun NotesListScreen(
                                     text = note.title,
                                     style = MaterialTheme.typography.titleMedium,
                                     maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis,
-                                    color = MaterialTheme.colorScheme.onSurface
+                                    overflow = TextOverflow.Ellipsis
                                 )
                                 Spacer(modifier = Modifier.height(4.dp))
                                 Text(
                                     text = note.content,
                                     style = MaterialTheme.typography.bodyMedium,
                                     maxLines = 2,
-                                    overflow = TextOverflow.Ellipsis,
-                                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                                    overflow = TextOverflow.Ellipsis
                                 )
                             }
                             IconButton(onClick = { onDeleteClick(note) }) {
                                 Icon(
                                     Icons.Default.Delete,
-                                    contentDescription = "Удалить",
-                                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                                    contentDescription = "Удалить"
                                 )
                             }
                         }
