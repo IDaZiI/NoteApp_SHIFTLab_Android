@@ -25,10 +25,8 @@ class NotesViewModel(
 
     fun addNote(title: String, content: String) {
         viewModelScope.launch {
-            val newId = repository.addOrUpdateNote(NoteEntity(0, title, content))
-            if (newId != null) {
-                _notes.add(0, NoteUi(newId, title, content))
-            }
+            val newId = repository.addNote(NoteEntity(0, title, content))
+            _notes.add(0, NoteUi(newId, title, content))
         }
     }
 
@@ -37,7 +35,7 @@ class NotesViewModel(
         if (index != -1) {
             _notes[index] = _notes[index].copy(title = title, content = content)
             viewModelScope.launch {
-                repository.addOrUpdateNote(
+                repository.updateNote(
                     NoteEntity(id, title, content)
                 )
             }
