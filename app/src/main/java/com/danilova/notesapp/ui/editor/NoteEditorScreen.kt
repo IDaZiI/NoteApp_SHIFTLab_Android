@@ -4,13 +4,16 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.unit.dp
 import com.danilova.notesapp.ui.model.NoteUi
+import android.content.Context
+import androidx.compose.material.icons.filled.Done
+import androidx.core.content.edit
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -19,8 +22,19 @@ fun NoteEditorScreen(
     onBackClick: () -> Unit,
     onSaveClick: (String, String) -> Unit
 ) {
-    var title by remember { mutableStateOf(note?.title ?: "") }
-    var content by remember { mutableStateOf(note?.content ?: "") }
+    val context = LocalContext.current
+    val prefs = remember { context.getSharedPreferences("notes_draft", Context.MODE_PRIVATE) }
+
+    var title by remember {
+        mutableStateOf(
+            note?.title ?: prefs.getString("draft_title", "") ?: ""
+        )
+    }
+    var content by remember {
+        mutableStateOf(
+            note?.content ?: prefs.getString("draft_content", "") ?: ""
+        )
+    }
 
     val keyboardController = LocalSoftwareKeyboardController.current
 
@@ -28,15 +42,29 @@ fun NoteEditorScreen(
         topBar = {
             TopAppBar(
                 title = { Text(if (note != null) "Редактировать заметку" else "Новая заметка") },
-                navigationIcon = { IconButton(onClick = onBackClick) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "") } }
+                navigationIcon = {
+                    IconButton(onClick = {
+                        prefs.edit {
+                            putString("draft_title", title)
+                                .putString("draft_content", content)
+                        }
+                        onBackClick()
+                    }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Назад")
+                    }
+                }
             )
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {
                 onSaveClick(title, content)
+                prefs.edit {
+                    remove("draft_title")
+                        .remove("draft_content")
+                }
                 keyboardController?.hide()
             }) {
-                Icon(Icons.Default.Done, contentDescription = "Save")
+                Icon(Icons.Default.Done, contentDescription = "Сохранить")
             }
         }
     ) { padding ->
@@ -44,7 +72,7 @@ fun NoteEditorScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .imePadding() 
+                .imePadding()
         ) {
             item {
                 OutlinedTextField(
@@ -65,5 +93,5 @@ fun NoteEditorScreen(
                 )
             }
         }
-}
+    }
 }
