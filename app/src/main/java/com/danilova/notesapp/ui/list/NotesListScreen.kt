@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
@@ -29,7 +30,8 @@ fun NotesListScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = {
+                title = { Text("Заметки") },
+                actions = {
                     TextField(
                         value = searchQuery,
                         onValueChange = { searchQuery = it },
@@ -39,19 +41,15 @@ fun NotesListScreen(
                         leadingIcon = {
                             Icon(Icons.Default.Search, contentDescription = "Поиск")
                         },
-                        colors = TextFieldDefaults.colors(
-                            focusedContainerColor = MaterialTheme.colorScheme.surface,
-                            unfocusedContainerColor = MaterialTheme.colorScheme.surface,
-                            focusedIndicatorColor = MaterialTheme.colorScheme.primary,
-                            unfocusedIndicatorColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
-                            cursorColor = MaterialTheme.colorScheme.primary
-                        )
+                        trailingIcon = {
+                            if (searchQuery.isNotEmpty()) {
+                                IconButton(onClick = { searchQuery = "" }) {
+                                    Icon(Icons.Default.Clear, contentDescription = "Очистить")
+                                }
+                            }
+                        }
                     )
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                    titleContentColor = MaterialTheme.colorScheme.onSurface
-                )
+                }
             )
         },
         floatingActionButton = {
