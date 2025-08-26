@@ -24,12 +24,11 @@ class NotesViewModel(
     }
 
     fun addNote(title: String, content: String) {
-        val newNote = NoteUi(System.currentTimeMillis(), title, content)
-        _notes.add(0, newNote)
         viewModelScope.launch {
-            repository.addOrUpdateNote(
-                NoteEntity(newNote.id, title, content)
-            )
+            val newId = repository.addOrUpdateNote(NoteEntity(0, title, content))
+            if (newId != null) {
+                _notes.add(0, NoteUi(newId, title, content))
+            }
         }
     }
 
