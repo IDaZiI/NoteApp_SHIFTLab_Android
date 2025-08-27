@@ -23,21 +23,23 @@ fun NotesListScreen(
     notes: List<NoteUi> = emptyList(),
     onAddClick: () -> Unit = {},
     onNoteClick: (NoteUi) -> Unit = {},
-    onDeleteClick: (NoteUi) -> Unit = {}
+    onDeleteClick: (NoteUi) -> Unit = {},
+    isDarkTheme: Boolean,
+    onThemeToggle: (Boolean) -> Unit
 ) {
     var searchQuery by remember { mutableStateOf("") }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Заметки") },
+                title = { Text("") },
                 actions = {
                     TextField(
                         value = searchQuery,
                         onValueChange = { searchQuery = it },
                         placeholder = { Text("Поиск по заголовку") },
                         singleLine = true,
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth(0.8f),
                         leadingIcon = {
                             Icon(Icons.Default.Search, contentDescription = "Поиск")
                         },
@@ -48,6 +50,10 @@ fun NotesListScreen(
                                 }
                             }
                         }
+                    )
+                    Switch(
+                        checked = isDarkTheme,
+                        onCheckedChange = { onThemeToggle(it) }
                     )
                 }
             )

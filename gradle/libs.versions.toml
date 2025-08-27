@@ -11,7 +11,6 @@ composeBom = "2025.08.00"
 ui = "1.9.0"
 runtime = "1.9.0"
 room = "2.7.2"
-kotlin-coroutines = "1.7.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
