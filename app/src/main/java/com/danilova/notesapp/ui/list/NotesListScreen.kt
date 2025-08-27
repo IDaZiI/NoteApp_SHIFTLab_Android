@@ -13,9 +13,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.danilova.notesapp.ui.model.NoteUi
+import com.danilova.notesapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -51,10 +53,17 @@ fun NotesListScreen(
                             }
                         }
                     )
-                    Switch(
-                        checked = isDarkTheme,
-                        onCheckedChange = { onThemeToggle(it) }
-                    )
+                    IconButton(
+                        onClick = { onThemeToggle(!isDarkTheme) }
+                    ) {
+                        Icon(
+                            painter = painterResource(
+                                id = if (isDarkTheme) R.drawable.bedtime_24px else R.drawable.sunny_24px
+                            ),
+                            contentDescription = if (isDarkTheme) "Темная тема" else "Светлая тема",
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    }
                 }
             )
         },
