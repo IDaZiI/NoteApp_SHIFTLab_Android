@@ -47,12 +47,9 @@ fun NoteDetailScreen(
         ) {
             Text(
                 text = note.title,
-                style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onSurface)
+                style = MaterialTheme.typography.titleLarge)
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = note.content,
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurface)
+            Text(text = note.content)
         }
     }
 }
