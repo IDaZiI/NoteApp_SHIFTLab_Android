@@ -10,16 +10,33 @@
 
 ### Обязательный функционал
 1. Создание новой заметки с заголовком и содержимым.
+<div align="center"><img src="src/save.gif" height="400px"/></div>
+
 2. Просмотр списка всех заметок с отображением текста "Пока нет заметок" или "Заметки не найдены" при отсутствии результатов.
+
 3. Просмотр деталей заметки.
+<div align="center"><img src="src/preview.gif" height="400px"/></div>
+
 4. Редактирование существующей заметки.
+<div align="center"><img src="src/edit.gif" height="400px"/></div>
+
 5. Удаление заметок.
+<div align="center"><img src="src/delete.gif" height="400px"/></div>
+
 6. Сохранение заметок в базе данных Room для персистентности данных после выгрузки приложения.
+<div align="center"><img src="src/room.gif" height="400px"/></div>
+
 
 ### Дополнительный функционал
 1. Сохранение черновика заметки при нажатии "Назад" (используется `SharedPreferences`).
+<div align="center"><img src="src/draft.gif" height="400px"/></div>
+
 2. Поиск заметок по заголовку.
+<div align="center"><img src="src/search.gif" height="400px"/></div>
+
 3. Переключение между светлой и темной темами.
+<div align="center"><img src="src/theme.gif" height="400px"/></div>
+
 
 ## Сборка
 1. Откройте проект в Android Studio. Требуется Android Studio 2023.1.1 или новее. Минимальная версия SDK: 21.
